@@ -30,5 +30,6 @@ public class BuscadorTierragroStepsDefinitions {
 	@Then("^podre ver el producto$")
 	public void podreVerElProducto() {
 	    tierragroSteps.validarTexto(TierragroPage.getLblNombreProducto(), "Sopladora STIHL BG 86");
+	    SeleniumWebDriver.driver.quit();
 	}
 }

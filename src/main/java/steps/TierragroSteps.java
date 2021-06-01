@@ -2,6 +2,10 @@ package steps;
 
 import static org.junit.Assert.assertEquals;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+
 import org.openqa.selenium.By;
 
 import driver.SeleniumWebDriver;
@@ -32,16 +36,21 @@ public class TierragroSteps {
 	public void buscarPalabraEnTierragro(String palabra) {
 		
 		escribirTexto(TierragroPage.getTxtBuscadorTierragro(), palabra);
+		
 		try {
 			Thread.sleep(5000);
-			clickEnElemento(TierragroPage.getBtnBuscar());
-			Thread.sleep(5000);
+			Robot robot = new Robot();
+			robot.keyPress(KeyEvent.VK_ENTER);
+			robot.keyRelease(KeyEvent.VK_ENTER);
+			
+			Thread.sleep(2000);
 			clickEnElemento(TierragroPage.getBtnVerProducto());
-			Thread.sleep(5000);
+			Thread.sleep(2000);
 			validarTexto(TierragroPage.getLblNombreProducto(), palabra);
 			
-		} catch (InterruptedException e) {
-			
+		} catch (InterruptedException e) {			
+			e.printStackTrace();
+		} catch (AWTException e) {
 			e.printStackTrace();
 		}
 	}

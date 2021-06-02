@@ -15,5 +15,6 @@ public class SeleniumWebDriver {
 		options.addArguments("--disable-infobars");
 		driver = new ChromeDriver(options);
 		driver.get(url);
+
 	}
 }

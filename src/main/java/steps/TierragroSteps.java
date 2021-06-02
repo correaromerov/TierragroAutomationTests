@@ -39,15 +39,38 @@ public class TierragroSteps {
 		assertEquals(obtenerTextoDeElemento(elemento), texto);
 	}
 	
+	public void disminuirZoomPagina (int zooms) {
+		
+		for (int i = 0; i < zooms; i++) {
+			try {
+				Robot robot = new Robot();
+				robot.keyPress(KeyEvent.VK_SHIFT);
+				robot.keyPress(KeyEvent.VK_CONTROL);
+				robot.keyPress(KeyEvent.VK_MINUS);
+				robot.keyRelease(KeyEvent.VK_MINUS);
+				robot.keyRelease(KeyEvent.VK_SHIFT);
+				robot.keyRelease(KeyEvent.VK_CONTROL);
+				
+			} catch (AWTException e1) {
+				e1.printStackTrace();
+			}
+			
+		}
+		
+		
+	}
+	
 	public void buscarPalabraEnTierragro() {
+		
+		clickEnElemento(TierragroPage.getBtnAceptarCookie());
 		
 		try {
 			lecturaExcel = Excel.readExcel("C:\\Users\\Ciber\\Documents\\Workspace\\Tierragro\\Productos.xlsx", "Hoja1");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-				
-		System.out.println("Productos");
+		
+		//disminuirZoomPagina(1);
 		
 		for (int i = 0; i < lecturaExcel.size(); i++) {
 			
@@ -61,7 +84,8 @@ public class TierragroSteps {
 				robot.keyPress(KeyEvent.VK_ENTER);
 				robot.keyRelease(KeyEvent.VK_ENTER);
 				
-				Thread.sleep(2000);
+				Thread.sleep(4000);
+				System.out.println("XPATH: "+TierragroPage.getBtnVerProducto());
 				clickEnElemento(TierragroPage.getBtnVerProducto());
 				Thread.sleep(2000);
 				validarTexto(TierragroPage.getLblNombreProducto(), lecturaExcel.get(i).get("Productos"));

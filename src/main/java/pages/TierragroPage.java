@@ -30,5 +30,4 @@ public class TierragroPage {
 	public static By getBtnCerrarMensaje() {
 		return btnCerrarMensaje;
 	}
-	
 }

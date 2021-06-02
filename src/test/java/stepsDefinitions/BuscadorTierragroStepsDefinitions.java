@@ -9,7 +9,7 @@ import pages.TierragroPage;
 import steps.TierragroSteps;
 
 public class BuscadorTierragroStepsDefinitions {
-
+	
 	@Steps
 	TierragroSteps tierragroSteps = new TierragroSteps();
 	
@@ -23,13 +23,11 @@ public class BuscadorTierragroStepsDefinitions {
 
 	@When("^busco el nombre del producto en el buscador$")
 	public void buscoElNombreDelProductoEnElBuscador() {
-		
-		tierragroSteps.buscarPalabraEnTierragro("Sopladora STIHL BG 86");
+		tierragroSteps.buscarPalabraEnTierragro();
 	}
 
 	@Then("^podre ver el producto$")
 	public void podreVerElProducto() {
-	    tierragroSteps.validarTexto(TierragroPage.getLblNombreProducto(), "Sopladora STIHL BG 86");
 	    SeleniumWebDriver.driver.quit();
 	}
 }

@@ -12,22 +12,20 @@ public class BuscadorTierragroStepsDefinitions {
 	
 	@Steps
 	TierragroSteps tierragroSteps = new TierragroSteps();
-	
-	
-	@Given("^que me encuentro en la pagina de Tierragro$")
-	public void queMeEncuentroEnLaPaginaDeTierragro() {
-		
-	   SeleniumWebDriver.chromeWebDriver("https://www.tierragro.com/");
+
+	@Given("^que me encuentro en la pagina de Tierragro con la url (.*)$")
+	public void queMeEncuentroEnLaPaginaDeTierragroConLaUrlHttpsWwwTierragroCom(String url) {
+		SeleniumWebDriver.chromeWebDriver(url);
 	}
 
-
-	@When("^busco el nombre del producto en el buscador$")
-	public void buscoElNombreDelProductoEnElBuscador() {
+	@When("^busco el producto en el buscador$")
+	public void buscoElProductoEnElBuscador() {
 		tierragroSteps.buscarPalabraEnTierragro();
 	}
 
-	@Then("^podre ver el producto$")
-	public void podreVerElProducto() {
-	    SeleniumWebDriver.driver.quit();
+	@Then("^podre ver el producto en pantalla$")
+	public void podreVerElProductoEnPantalla() {
+		SeleniumWebDriver.driver.quit();
 	}
+	
 }

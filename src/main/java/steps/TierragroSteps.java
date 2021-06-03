@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 
 import driver.SeleniumWebDriver;
 import pages.TierragroPage;
@@ -62,7 +63,15 @@ public class TierragroSteps {
 	
 	public void buscarPalabraEnTierragro() {
 		
+	try {
+		Thread.sleep(3000);
+		//clickEnElemento(TierragroPage.getBtnCerrarMensaje());
 		clickEnElemento(TierragroPage.getBtnAceptarCookie());
+	} catch (InterruptedException e1) {
+		e1.printStackTrace();
+	}
+		
+		
 		
 		try {
 			lecturaExcel = Excel.readExcel("C:\\Users\\Ciber\\Documents\\Workspace\\Tierragro\\Productos.xlsx", "Hoja1");
@@ -73,20 +82,22 @@ public class TierragroSteps {
 		//disminuirZoomPagina(1);
 		
 		for (int i = 0; i < lecturaExcel.size(); i++) {
-			
-			System.out.println(lecturaExcel.get(i).get("Productos"));
-			
+					
 			escribirTexto(TierragroPage.getTxtBuscadorTierragro(), lecturaExcel.get(i).get("Productos"));
 			
 			try {
-				Thread.sleep(2000);
+				Thread.sleep(1000);
 				Robot robot = new Robot();
 				robot.keyPress(KeyEvent.VK_ENTER);
 				robot.keyRelease(KeyEvent.VK_ENTER);
 				
-				Thread.sleep(4000);
-				System.out.println("XPATH: "+TierragroPage.getBtnVerProducto());
+				Thread.sleep(2000);
 				clickEnElemento(TierragroPage.getBtnVerProducto());
+				
+				//scroll
+				JavascriptExecutor jse = (JavascriptExecutor)SeleniumWebDriver.driver;
+				jse.executeScript("window.scrollBy(0,200)");
+				
 				Thread.sleep(2000);
 				validarTexto(TierragroPage.getLblNombreProducto(), lecturaExcel.get(i).get("Productos"));
 				

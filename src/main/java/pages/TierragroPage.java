@@ -11,7 +11,6 @@ public class TierragroPage {
 	private static By btnBuscar = By.xpath("//button[@class='search-bar__submit']");
 	private static By btnCerrarMensaje = By.xpath("//i[@class='far fa-times close triggerClose']");
 	private static By btnAceptarCookie = By.xpath("//button[@class='cookie-bar__button button button--secondary']");
-//	private static By btnCerrarMensaje = By.xpath("//div[@class='powrModal popupApp animate-entrance ']");
 	
 	public static By getTxtBuscadorTierragro() {
 		return txtBuscadorTierragro;
@@ -33,6 +32,6 @@ public class TierragroPage {
 	}
 	public static By getBtnAceptarCookie() {
 		return btnAceptarCookie;
-	}
+	}	
 	
 }

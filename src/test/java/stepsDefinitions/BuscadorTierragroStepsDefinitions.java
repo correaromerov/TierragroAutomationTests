@@ -5,7 +5,6 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import driver.SeleniumWebDriver;
 import net.thucydides.core.annotations.Steps;
-import pages.TierragroPage;
 import steps.TierragroSteps;
 
 public class BuscadorTierragroStepsDefinitions {

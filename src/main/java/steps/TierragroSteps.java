@@ -2,6 +2,7 @@ package steps;
 
 import static org.junit.Assert.assertEquals;
 
+
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
@@ -95,7 +96,7 @@ public class TierragroSteps {
 	
 	public void buscarPalabraEnTierragro() {
 				
-		boolean cerroCookie = false;
+//		boolean cerroCookie = false;
 				
 		try {
 			lecturaExcel = Excel.readExcel("C:\\Users\\Ciber\\Documents\\Workspace\\Tierragro\\Productos.xlsx", "Hoja1");
@@ -103,7 +104,35 @@ public class TierragroSteps {
 			e.printStackTrace();
 		}
 		
+		
+		try {
+			Thread.sleep(6000);
+		} catch (InterruptedException e1) {
+			
+			e1.printStackTrace();
+		}
+		
 		//disminuirZoomPagina(3);
+		//SeleniumWebDriver.driver.switchTo().frame(1);
+		
+		cambiarDeFrame(2);
+		clickEnElemento(TierragroPage.getBtnCerrarMensaje());
+		volverFramePrincipal();
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e1) {
+			
+			e1.printStackTrace();
+		}
+		
+		clickEnElemento(TierragroPage.getBtnAceptarCookie());
+		
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e1) {
+			
+			e1.printStackTrace();
+		}
 		
 		for (int i = 0; i < lecturaExcel.size(); i++) {
 					
@@ -115,10 +144,10 @@ public class TierragroSteps {
 				robot.keyPress(KeyEvent.VK_ENTER);
 				robot.keyRelease(KeyEvent.VK_ENTER);
 				
-				if (!cerroCookie) {
-					clickEnElemento(TierragroPage.getBtnAceptarCookie());
-					cerroCookie = true;
-				}
+//				if (!cerroCookie) {
+//					clickEnElemento(TierragroPage.getBtnAceptarCookie());
+//					cerroCookie = true;
+//				}
 				
 				clickEnElemento(TierragroPage.getBtnVerProducto());
 				
@@ -127,6 +156,8 @@ public class TierragroSteps {
 				jse.executeScript("window.scrollBy(0,200)");
 				
 				validarTexto(TierragroPage.getLblNombreProducto(), lecturaExcel.get(i).get("Productos"));
+				
+				Thread.sleep(3000);
 				
 			} catch (InterruptedException e) {			
 				e.printStackTrace();
@@ -154,5 +185,20 @@ public class TierragroSteps {
 	
 	public static void volverALaVentanaPrincipal () {
 		SeleniumWebDriver.driver.switchTo().window(defaultWindows);
+	}
+	
+	public void cambiarDeFrame(int indexFrame) {
+		boolean validacionFrame = false;
+		while (validacionFrame == false) {
+			try {
+				SeleniumWebDriver.driver.switchTo().frame(indexFrame);
+				validacionFrame = true;
+			} catch (Exception e) {
+			}
+		}
+	}
+	
+	public void volverFramePrincipal() {
+		SeleniumWebDriver.driver.switchTo().defaultContent();
 	}
 }
